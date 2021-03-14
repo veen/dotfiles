@@ -1,5 +1,29 @@
 #!/usr/bin/env bash
 
+# JPV Aliases from forever
+
+alias dir='ls -lAF ${colorflag}'
+# alias m='less -e'
+alias m='more'
+alias bye='exit'
+alias ftp='ftp -i'
+alias h='history'
+alias df='df -h'
+
+alias p='ssh pixel'
+
+# Nostalgia
+# alias ga='cd /Users/jveen/Documents/ga_design/; svn up'
+# alias gac='cd /Users/jveen/Documents/ga_design/; svn commit'
+# alias svnunknown='svn status | grep "^\?" | sed s/\?//'
+# alias v='ssh veen@veen.com'
+# alias home='ssh jveen@veen.webhop.net'
+# alias c='ssh root@cottage.veen.com'
+# alias tssh='ssh -t knox.typekit.com ssh'
+# export tk_api_token=1af75fbf4d88032c2a0187c9e65d6562c2382010
+
+
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
