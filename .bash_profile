@@ -4,19 +4,23 @@ export PATH="$HOME/bin:$PATH";
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+# for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+# 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+# done;
+# unset file;
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
+source ~/Dropbox/dotfiles/.aliases
+source ~/Dropbox/dotfiles/.bash_prompt
+source ~/Dropbox/dotfiles/.path
 
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
+# # Case-insensitive globbing (used in pathname expansion)
+ shopt -s nocaseglob;
 
-# Autocorrect typos in path names when using `cd`
-# shopt -s cdspell;
+# # Append to the Bash history file, rather than overwriting it
+ shopt -s histappend;
+
+# # Autocorrect typos in path names when using `cd`
+# # shopt -s cd ;
 
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
@@ -48,3 +52,26 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+
+
+# Normalize `open` across Linux, macOS, and Windows.
+# This is needed to make the `o` function (see below) cross-platform.
+if [ ! $(uname -s) = 'Darwin' ]; then
+	if grep -q Microsoft /proc/version; then
+		# Ubuntu on Windows using the Linux subsystem
+		alias open='explorer.exe';
+	else
+		alias open='xdg-open';
+	fi
+fi
+
+# `o` with no arguments opens the current directory, otherwise opens the given
+# location
+function o() {
+	if [ $# -eq 0 ]; then
+		open .;
+	else
+		open "$@";
+	fi;
+}
