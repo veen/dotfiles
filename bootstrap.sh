@@ -1,27 +1,22 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
+# Check if Command Line Tools are installed; if not, install them
 
-git pull origin main;
+    xcode_installed=`xcode-select -p 1>/dev/null;echo $?`
+    if [ $xcode_installed == 2 ]; then
+        xcode-select --install;
+    else
+        echo "Command Line Tools already installed...";
+    fi;
 
-function doIt() {
-	rsync --exclude ".git/" \
-		--exclude ".DS_Store" \
-		--exclude ".osx" \
-		--exclude "bootstrap.sh" \
-		--exclude "README.md" \
-		--exclude "LICENSE-MIT.txt" \
-		-avh --no-perms . ~;
-	source ~/.bash_profile;
-}
+# Install Homebrew
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
-fi;
-unset doIt;
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew bundle --file ~/Dropbox/dotfiles/Brewfile
+
+# Make symlinks to dotfiles in home directory
+
+    ln -s ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
+    ln -s ~/Dropbox/dotfiles/.inputrc ~/.inputrc
+    ln -s ~/Dropbox/dotfiles/.gitconfig ~/.gitconfig
+    echo "Symlinks created in home directory.";
