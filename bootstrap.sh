@@ -16,7 +16,17 @@
 
 # Make symlinks to dotfiles in home directory
 
-    ln -s ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
-    ln -s ~/Dropbox/dotfiles/.inputrc ~/.inputrc
-    ln -s ~/Dropbox/dotfiles/.gitconfig ~/.gitconfig
+    ln -sF ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
+    ln -sF ~/Dropbox/dotfiles/.inputrc ~/.inputrc
+    ln -sF ~/Dropbox/dotfiles/.gitconfig ~/.gitconfig
     echo "Symlinks created in home directory.";
+
+
+# Install Fonts
+
+    rsync -avh --exclude "Archive/" ~/Dropbox/Fonts /Library/Fonts/
+
+
+# Configure iTerm2 settings
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/Dropbox/dotfiles/iterm2"
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
