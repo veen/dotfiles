@@ -11,22 +11,23 @@
 
 # Install Homebrew
 
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew bundle --file ~/Dropbox/dotfiles/Brewfile
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
+    brew update;
+    brew upgrade;
+    brew bundle --file ~/Dropbox/dotfiles/Brewfile;
 
 # Make symlinks to dotfiles in home directory
 
-    ln -sF ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
-    ln -sF ~/Dropbox/dotfiles/.inputrc ~/.inputrc
-    ln -sF ~/Dropbox/dotfiles/.gitconfig ~/.gitconfig
+    ln -sF ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile;
+    ln -sF ~/Dropbox/dotfiles/.inputrc ~/.inputrc;
+    ln -sF ~/Dropbox/dotfiles/.gitconfig ~/.gitconfig;
     echo "Symlinks created in home directory.";
 
 
 # Install Fonts
 
-    rsync -avh --exclude "Archive/" ~/Dropbox/Fonts /Library/Fonts/
-
+    rsync -avh --exclude "Archive/" ~/Dropbox/Fonts /Library/Fonts/;
 
 # Configure iTerm2 settings
-    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/Dropbox/dotfiles/iterm2"
-    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/Dropbox/dotfiles/iterm2";
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true;
