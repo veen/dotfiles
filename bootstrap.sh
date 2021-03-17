@@ -23,10 +23,13 @@
     ln -sF ~/Dropbox/dotfiles/.gitconfig ~/.gitconfig;
     echo "Symlinks created in home directory.";
 
+# TODO: ssh keys
 
-# Install Fonts
+# TODO: configure rclone
 
-    rsync -avh --exclude "Archive/" ~/Dropbox/Fonts /Library/Fonts/;
+# Install Fonts with rclone
+
+    rclone copy -P  dropbox:Fonts /Library/Fonts/ --exclude "Archive/";
 
 # Configure iTerm2 settings
     defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/Dropbox/dotfiles/iterm2";
