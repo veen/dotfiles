@@ -4,6 +4,7 @@ tap "homebrew/cask-drivers"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 brew "python@3.9"
+brew "rclone"
 brew "awscli"
 brew "bash"
 brew "bash-completion@2"
@@ -64,7 +65,6 @@ mas "iMovie", id: 408981434
 mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
-mas "LimeChat", id: 414030210
 mas "Magnet", id: 441258766
 mas "miRack", id: 1500860857
 mas "Numbers", id: 409203825
